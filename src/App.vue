@@ -51,7 +51,9 @@ function useSettingsPanel() {
                     store.getStickers.length == 0 ? 50 : (store.getStickers.length * 10) + 50, // по Y
                     Math.max(...store.stickers.map(s => s.z), 0), // z-index
                     store.settings.width, // Ширина
-                    store.settings.height // Высота
+                    store.settings.height, // Высота
+                    store.settings.color, // Цвет фона стикера
+                    store.settings.font // Размер шрифта стикера
                 )">Добавить +</button>
                 <button @click="store.clearBoard">
                     Очистить доску
@@ -64,7 +66,7 @@ function useSettingsPanel() {
                 <div class="collapsedPanel">
                     <div class="collapsedPanel__sticker" v-for="sticker in store.getStickers.filter(s => s.folded)"
                         :key="sticker.id"
-                        :style="{backgroundColor: store.settings.color}"
+                        :style="{backgroundColor: sticker.color}"
                         >
                         <button @click="store.setFoldedSticker(sticker.id)">+</button>
                         <p>{{ sticker.text }}</p>

@@ -40,10 +40,10 @@ export const useMainStore = defineStore('stickers', {
             localStorage.setItem('settings', JSON.stringify(this.settings))
         },
 
-        createSticker(text, folded, x, y, z, w, h) {
+        createSticker(text, folded, x, y, z, w, h, color, fontSize) {
             const id = Date.now();
 
-            this.stickers.push({ id , text, folded, x, y, z, w, h})
+            this.stickers.push({ id , text, folded, x, y, z, w, h, color, fontSize})
             this.persist()
         },
 

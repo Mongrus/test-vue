@@ -11,8 +11,9 @@ const { stickerInfo, styleObj} = defineProps({
 })
 
 watch(
-    () => stickerInfo.text,
-    () => store.persist()
+    () => stickerInfo,
+    () => store.persist(),
+    { deep: true }
 )
 
 function useSettingsSticker() {
@@ -56,13 +57,24 @@ function resizeSticker(e, id, corner) {
             <button @click="store.destroySticker(stickerInfo.id)">X</button>
         </div>
         <Transition mode="out-in">
-            <textarea v-if="!settingsSticker" :style="[{fontSize: store.settings?.font + 'px'}, {backgroundColor: store.settings?.color}, {color: store.settings?.fontColor}]"
+            <textarea v-if="!settingsSticker" :style="[{fontSize: stickerInfo.fontSize + 'px'}, {backgroundColor: stickerInfo.color}, {color: store.settings?.fontColor}]"
             v-model="stickerInfo.text">
             </textarea>
             <div class="settings-sticker" v-else>
-                <h3 style="color: white">Тут будут настройки для конкретно этого стикера =)</h3>
-                <p>Ширина: {{ stickerInfo.w }}</p>
-                <p>Высота: {{ stickerInfo.w }}</p>
+                <h3 style="color: white">Настройки стикера <span>(еще думаю добавить шрифты разные)</span></h3>
+                <p>Ширина: <input type="number" v-model="stickerInfo.w"></p>
+                <p>Высота: <input type="number" v-model="stickerInfo.h"></p>
+                <p>Цвет фона:  
+                    <select name="sticker-color" v-model="stickerInfo.color">
+                        <option value="#FFF9C4">Мягкий желтый</option>
+                        <option value="#E8F5E9">Нежный зеленый</option>
+                        <option value="#E3F2FD">Светлый голубой</option>
+                        <option value="#F3E5F5">Мягкий фиолетовый</option>
+                        <option value="#FCE4EC">Нежный розовый</option>
+                        <option value="#FFF3E0">Светлый оранжевый</option>
+                    </select>
+                </p>
+                <p>Размер шрифта: <input type="number" v-model="stickerInfo.fontSize"></p>
             </div>
         </Transition>
         <div class="resize resize__resize-lt" @mousedown.stop="resizeSticker($event, stickerInfo.id, 'lt')"></div>
@@ -114,6 +126,8 @@ function resizeSticker(e, id, corner) {
     background-color: gray
     width: 100%
     height: 100%
+    span
+        color: indigo
 
 .resize
     position: absolute
