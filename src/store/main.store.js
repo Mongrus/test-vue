@@ -59,6 +59,28 @@ export const useMainStore = defineStore('stickers', {
             this.persist()
         },
 
+        setSizeSticker(id, deltaX, deltaY, corner) {
+        const sticker = this.stickers.find(s => s.id === id)
+
+        if (corner === 'rb') {
+            sticker.w += deltaX
+            sticker.h += deltaY
+        }
+
+        if (corner === 'lb') {
+            sticker.w -= deltaX
+            sticker.h += deltaY
+            sticker.x += deltaX
+        }
+
+        if (corner === 'lt') {
+            sticker.w -= deltaX
+            sticker.h -= deltaY
+            sticker.x += deltaX
+            sticker.y += deltaY
+        }
+        },
+
         clearBoard() {
             this.stickers = [];
             localStorage.removeItem('stickers');

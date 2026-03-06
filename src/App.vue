@@ -120,7 +120,7 @@ function useSettingsPanel() {
                     </div>
                     <button @click="store.persist()">Сохранить</button>
                     <button @click="store.settingsDefault()">Сбросить</button>
-                    <h3 style="color: red">Эти настройки будут только для новых - создаваемых стикеров + общие настройки Шрифта и тп</h3>
+                    <h3 style="color: red">Эти настройки будут только для новых - создаваемых стикеров</h3>
                 </div>
             </Transition>
         </div>
@@ -142,7 +142,7 @@ nav
     backdrop-filter: blur(4px)
     -webkit-backdrop-filter: blur(4px)
     border: 1px solid rgba(54, 149, 121, 0.3)
-    z-index: 3000
+    z-index: 9000
     button
         padding: 3px 6px
         color: white
@@ -179,7 +179,7 @@ nav
     backdrop-filter: blur(4px)
     -webkit-backdrop-filter: blur(4px)
     border: 1px solid rgba(54, 149, 121, 0.3)
-    z-index: 3000
+    z-index: 9000
     &__sticker
         border: 1px solid black
         display: flex
@@ -214,7 +214,7 @@ nav
     backdrop-filter: blur(4px)
     -webkit-backdrop-filter: blur(4px)
     border: 1px solid rgba(54, 149, 121, 0.3)
-    z-index: 3000
+    z-index: 9000
     color: white
     input
         width: 50px
